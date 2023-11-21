@@ -1,0 +1,29 @@
+.CardItem {
+    border: 2px solid #0e0d0d;
+    border-radius: 10px;
+    padding: 16px;
+    margin: 16px;
+    width: 200px;
+  }
+  
+  .ItemHeader {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  
+  .ItemImg {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .Info {
+    margin: 8px 0;
+  }
+  
+  .ItemFooter {
+    margin-top: 20px;
+  }
+  
+  .Quantity{
+    margin: 10px;
+  }
