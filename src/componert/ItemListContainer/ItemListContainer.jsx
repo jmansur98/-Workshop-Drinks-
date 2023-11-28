@@ -1,19 +1,7 @@
-import { useEffect, useState } from 'react'
-import { getproducts } from '../../asyncmocks'
 import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = ({ greeting }) => {
-    const [product, setproducts] = useState ([])
+const ItemListContainer = ({ greeting, product}) => {
 
-    useEffect (()=> {
-        getproducts ()
-        .then(Response => {
-            setproducts(Response)
-        })
-        .catch(Error => {
-             console.error();
-        })
-    }, [])
 
     return (
         <div>

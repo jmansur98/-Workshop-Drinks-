@@ -12,16 +12,19 @@
   }
   
   .ItemImg {
-    max-width: 100%;
-    height: auto;
+    width: 164px; /* Ancho deseado */
+    height: 218px; /* Alto deseado */
+    object-fit: cover; /* Rellena el contenedor sin distorsionar la proporción */
+    display: block; /* Evita que las imágenes tengan márgenes adicionales */
   }
+  
   
   .Info {
     margin: 8px 0;
   }
   
   .ItemFooter {
-    margin-top: 20px;
+    margin-top: 30px;
   }
   
   .Quantity{
