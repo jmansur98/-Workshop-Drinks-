@@ -37,10 +37,10 @@ const Item = ({ id, name, img, price, stock }) => {
         <button className='Option' onClick={handleDecrement}>-</button>
         <span className='Quantity'>{quantity}</span>
         <button className='Option' onClick={handleIncrement}>+</button>
-        <Link to={`/item/${id}`}>
-          <button className='Option'>
-            Ver Detalle
-          </button>
+        <Link to={`/item/${id}`} state={{ id, name, img, price, stock }}>
+           <button className='Option'>
+             Ver Detalle
+           </button>
         </Link>
       </footer>
     </article>

@@ -35,14 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<ItemListContainer product={product} greeting={'Bienvenido'} />} />
             <Route path="/category/:id" element={<ItemListContainer />} />
-            <Route exact path="/item/:id" 
-                  render={(props) => {
-                    console.log('props', props)
-                    const item = product.filter( item => item.id === props.match.params.id)
-                  return(
-                    <ItemDetailConteiner item={item}></ItemDetailConteiner>
-                  )
-                  }}/>            <Route path="/inicio" element={<Inicio />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/productos" element={<Productos />} />
             <Route path="/usuario" element={<Usuario />} />
             <Route path="/carrito" element={<ItemCount initial={0} stock={10} onAdd={handleAddToCart} />} />

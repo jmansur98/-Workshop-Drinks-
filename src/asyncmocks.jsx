@@ -90,3 +90,15 @@ export const getproducts =
        }, 500) 
     })
 }
+export const getProductById = (id) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const product = products.find(p => p.id === id);
+      if (product) {
+        resolve(product);
+      } else {
+        reject(new Error('Producto no encontrado'));
+      }
+    }, 500);
+  });
+};
