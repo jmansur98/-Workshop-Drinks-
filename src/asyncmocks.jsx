@@ -18,7 +18,7 @@ const products = [
     },
     {
       id: 3,
-      category: 'Clásico',
+      category: 'Lujo',
       name: 'Macallan',
       stock: 12,
       price: 29.99,
@@ -26,7 +26,7 @@ const products = [
     },
     {
       id: 4,
-      category: 'Premium',
+      category: 'Clásico',
       name: 'Martini',
       stock: 2,
       price: 89.99,
@@ -58,7 +58,7 @@ const products = [
     },   
     {
       id: 8,
-      category: 'Lujo',
+      category: 'Clásico',
       name: 'BullDog',
       stock: 4,
       price: 49.99,

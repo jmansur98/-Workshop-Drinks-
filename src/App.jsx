@@ -5,7 +5,6 @@ import NavBar from './componert/NavBar/NavBar';
 import './App.css';
 import ItemListContainer from './componert/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './componert/ItemDetailContainer/ItemDetailContainer';
-import Inicio from './pages/inicio';
 import Productos from './pages/productos';
 import Usuario from './pages/usuario';
 import { getproducts } from '../src/asyncmocks'
