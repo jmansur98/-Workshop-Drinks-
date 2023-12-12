@@ -74,7 +74,7 @@ const products = [
     },
     {
       id: 10,
-      category: 'Lujo',
+      category: 'Clásico',
       name: 'Olave',
       stock: 4,
       price: 99.99,

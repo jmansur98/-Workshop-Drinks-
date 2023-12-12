@@ -4,11 +4,12 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase/client';
 
 const ItemListContainer = ({ greeting, product}) => {
-console.log(db)
         useEffect(() => {
-            const productosRef =db.collection('productos');
-            console.log("PRODUCTOSREFFFFFF", productosRef )
+            const productosRef = collection(db, 'productos');
+
+
             getDocs(productosRef)
+            
             .then((snapshot) => {
                 const productsData = snapshot.docs.map((doc) => ({
                 id: doc.id,...doc.data(),
