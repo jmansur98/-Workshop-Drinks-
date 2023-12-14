@@ -1,0 +1,17 @@
+.ItemDetailContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .ItemDetailContainer img {
+    max-width: 300px; 
+    height: auto;
+    margin-top: 5px; 
+  }
+  .QuantityTwo{
+    margin: 10px;
+  }
+  .prevTotalPrice{
+    font-weight: bold;
+  }

@@ -10,7 +10,6 @@ const ItemDetail = ({ product }) => {
       <h2>{product.name}</h2>
       <p>Precio: ${product.price}</p>
       <p>Stock: {product.stock}</p>
-      <p>Descripción: {product.description}</p>
 
     </div>
   );

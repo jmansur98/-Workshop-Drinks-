@@ -1,10 +1,17 @@
-import cart from './assets/cart-ico.png'
+// CartWidget.jsx
+import React from 'react';
+import cart from './assets/cart-ico.png';
+import { useCart } from '../path-to-CartContext/CartContext'; // Ruta real hacia el contexto
+
 const CartWidget = () => {
-    return(
-        <div>
-            <img src={cart} alt= "cart-widget"/>
-            0
-        </div>
-    )
-}
-export default CartWidget
+  const { cartCount } = useCart(); // Leemos la cantidad del carrito del contexto
+
+  return (
+    <div>
+      <img src={cart} alt="cart-widget" />
+      {cartCount}
+    </div>
+  );
+};
+
+export default CartWidget;

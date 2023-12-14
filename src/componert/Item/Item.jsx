@@ -2,20 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Item.css';
 
-const Item = ({ id, name, img, price, stock }) => {
-  const [quantity, setQuantity] = useState(0);
-
-  const handleIncrement = () => {
-    if (quantity < stock) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
-  };
+const Item = ({ id, name, img, price, stock,category }) => {
 
   return (
     <article className='CardItem'>
@@ -32,12 +19,10 @@ const Item = ({ id, name, img, price, stock }) => {
         <p className='Info'>
           Stock: {stock}
         </p>
+        <p className='categoryFilters'>Categoria: {category}</p>
       </section>
       <footer className='ItemFooter'>
-        <button className='Option' onClick={handleDecrement}>-</button>
-        <span className='Quantity'>{quantity}</span>
-        <button className='Option' onClick={handleIncrement}>+</button>
-        <Link to={`/item/${id}`} state={{ id, name, img, price, stock }}>
+        <Link to={`/item/${id}`} state={{ id, name, price, stock, img }}>
            <button className='Option'>
              Ver Detalle
            </button>

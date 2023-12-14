@@ -2,19 +2,8 @@ import React, { useState } from 'react';
 import './ItemCount.css';
 
 const ItemCount = ({ initial, stock, onAdd }) => {
-  const [count, setCount] = useState(initial);
+  const [count] = useState(initial);
 
-  const handleIncrement = () => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
-
-  const handleDecrement = () => {
-    if (count > 0 ) {
-      setCount(count - 1);
-    }
-  };
 
   const handleAddToCart = () => {
     onAdd(count);
@@ -22,12 +11,9 @@ const ItemCount = ({ initial, stock, onAdd }) => {
 
   return (
     <div className="ItemCount">
-      <div className="counter">
-        <button onClick={handleDecrement}>-</button>
-        <span>{count}</span>
-        <button onClick={handleIncrement}>+</button>
-      </div>
-      <button onClick={handleAddToCart}>Agregar al carrito</button>
+      <button onClick={handleAddToCart}>
+  {count > 0 ? `Ir al carrito (${count})` : 'Finalizar Compra'}
+</button>
     </div>
   );
 };

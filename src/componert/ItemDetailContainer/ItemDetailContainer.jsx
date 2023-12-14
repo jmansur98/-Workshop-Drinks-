@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { getProductById } from '../../asyncmocks';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase/client';
+import "./ItemDetailContainer.css"
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useCart } from '../path-to-CartContext/CartContext'; // Ruta real hacia el contexto
+
+
+
 
 const ItemDetailContainer = () => {
   const location = useLocation();
@@ -10,16 +18,25 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(!location.state);
   const [error, setError] = useState(null);
 
+  const { addToCart } = useCart(); // Utilizamos la función addToCart del contexto
+
   useEffect(() => {
     if (!location.state) {
       setLoading(true);
       const fetchProduct = async () => {
         try {
-          const selectedProduct = await getProductById(parseInt(id, 10));
-          if (selectedProduct) {
+          const productDoc = doc(db, 'productos', id);
+          const productSnapshot = await getDoc(productDoc);
+
+          if (productSnapshot.exists()) {
+            const selectedProduct = {
+              id: productSnapshot.id,
+              ...productSnapshot.data(),
+            };
             setProduct(selectedProduct);
-          } else {
-            console.error('Product not found');
+          } 
+          else {
+            console.error('Error fetching product:', error);
             setError('Producto no encontrado');
           }
         } catch (error) {
@@ -33,6 +50,8 @@ const ItemDetailContainer = () => {
     }
   }, [id, location.state]);
 
+
+
   const handleIncrement = () => {
     if (product && quantity < product.stock) {
       setQuantity(quantity + 1);
@@ -45,6 +64,15 @@ const ItemDetailContainer = () => {
     }
   };
 
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart(quantity); // Llamamos a la función addToCart del contexto
+      navigate('/carrito', { state: { product, quantity } });
+    }
+  };
+
   if (loading) {
     return <p>Cargando...</p>;
   }
@@ -54,17 +82,26 @@ const ItemDetailContainer = () => {
   }
 
   return (  
-    <div>
+    <div className="ItemDetailContainer">
       {product ? (
         <>
           <h2>{product.name}</h2>
+          <img src={product.img} alt={product.name} />
           <p>Precio: ${product.price}</p>
           <p>Stock: {product.stock}</p>
-          <p>Descripción: {product.description}</p>
-          <p>Contador: {quantity}</p>
+          <div>
           <button onClick={handleDecrement}>-</button>
+          <span className='QuantityTwo'>{quantity}</span>
           <button onClick={handleIncrement}>+</button>
-        </>
+        </div>
+        <p className='prevTotalPrice'>Precio total: ${product.price * quantity}</p>
+        <Link to="/carrito">
+        <button onClick={handleAddToCart}>
+           Agregar al carrito
+        </button>
+        </Link>
+
+    </>
       ) : (
         <p>Producto no encontrado</p>
       )}
