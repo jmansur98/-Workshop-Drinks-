@@ -3,9 +3,10 @@ import { useLocation, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/client';
 import "./ItemDetailContainer.css"
-import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { useCart } from '../path-to-CartContext/CartContext'; // Ruta real hacia el contexto
+import { useCart } from '../CartContext/CartContext'; 
+import { useNavigate } from 'react-router-dom'; 
+
 
 
 
@@ -17,8 +18,10 @@ const ItemDetailContainer = () => {
   const [quantity, setQuantity] = useState(0);
   const [loading, setLoading] = useState(!location.state);
   const [error, setError] = useState(null);
+  const [stock, setStock] = useState(0); 
+  const navigate = useNavigate(); 
 
-  const { addToCart } = useCart(); // Utilizamos la función addToCart del contexto
+
 
   useEffect(() => {
     if (!location.state) {
@@ -34,6 +37,8 @@ const ItemDetailContainer = () => {
               ...productSnapshot.data(),
             };
             setProduct(selectedProduct);
+            setStock(selectedProduct.stock); 
+
           } 
           else {
             console.error('Error fetching product:', error);
@@ -59,17 +64,18 @@ const ItemDetailContainer = () => {
   };
 
   const handleDecrement = () => {
-    if (quantity > 0) {
+    if (product && quantity < product.stock) {
       setQuantity(quantity - 1);
     }
   };
 
-  const navigate = useNavigate();
+  const { addToCart, updateStock } = useCart();
 
   const handleAddToCart = () => {
     if (quantity > 0) {
-      addToCart(quantity); // Llamamos a la función addToCart del contexto
-      navigate('/carrito', { state: { product, quantity } });
+      addToCart({ product, quantity });
+      updateStock(product.id, quantity);
+      navigate('/carrito', { state: { product, quantity,stock } });
     }
   };
 

@@ -12,10 +12,10 @@
   }
   
   .ItemImg {
-    width: 164px; /* Ancho deseado */
-    height: 218px; /* Alto deseado */
-    object-fit: cover; /* Rellena el contenedor sin distorsionar la proporción */
-    display: block; /* Evita que las imágenes tengan márgenes adicionales */
+    width: 164px; 
+    height: 218px; 
+    object-fit: cover; 
+    display: block;
   }
   
   

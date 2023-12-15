@@ -7,11 +7,12 @@ import ItemListContainer from './componert/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './componert/ItemDetailContainer/ItemDetailContainer';
 import Productos from './pages/productos';
 import Usuario from './pages/usuario';
-import { CartProvider } from '../src/componert/CartWidget/CartWidget'; // Ruta real hacia el contexto
+import { CartProvider } from '../src/componert/CartContext/CartContext';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
   const [product] = useState([]);
+
 
   const handleAddToCart = (count) => {
     if (count > 0) {
@@ -21,9 +22,9 @@ function App() {
 
   return (
     <Router>
-      <CartProvider> {/* Aquí envolvemos toda la aplicación con el CartProvider */}
-        <div className='App'>
-          <NavBar cartCount={cartItems.length} />
+<CartProvider>
+        <div className="App">
+  <NavBar cartCount={cartItems.length} />
           <div className='content-container'>
             <Routes>
               <Route path="/" element={<ItemListContainer product={product} greeting={'Bienvenido'} />} />
@@ -35,7 +36,7 @@ function App() {
             </Routes>
           </div>
         </div>
-      </CartProvider>
+        </CartProvider>
     </Router>
   );
 }

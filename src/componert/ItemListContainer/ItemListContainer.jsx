@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({ greeting }) => {
   const [productos, setProductos] = useState([]); //estado que almacenará la lista de productos que se mostrarán
-  const [selectedCategory, setSelectedCategory] = useState(null); // estado que almacena la categoría seleccionada
+  const [selectedCategory, setSelectedCategory] = useState(""); // estado que almacena la categoría seleccionada
 
   const { category } = useParams(); // obtiene la categoría desde los parámetros de la URL
 
@@ -33,7 +33,7 @@ const ItemListContainer = ({ greeting }) => {
 
   useEffect(() => {
     // seleccionar la categoría desde los parámetros de la URL (useEffect para inicializar la categoría desde la URL)
-    setSelectedCategory(category || null);
+    setSelectedCategory(category || "");
   }, [category]);
 
   return (
