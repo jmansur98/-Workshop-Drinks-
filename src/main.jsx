@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import { CssBaseline } from "@mui/material";
+import { CartProvider } from './componert/CartContext/CartContext.jsx'; 
 
 export const getProductById = async (id) => {
   try {
@@ -30,7 +31,10 @@ export const getProductById = async (id) => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <CssBaseline/>
-    <App />
+    <CssBaseline />
+    <CartProvider>
+      <App />
+    </CartProvider>
   </React.StrictMode>,
-)
+
+);

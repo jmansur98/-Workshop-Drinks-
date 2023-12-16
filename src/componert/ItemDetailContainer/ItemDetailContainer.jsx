@@ -3,25 +3,18 @@ import { useLocation, useParams } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/client';
 import "./ItemDetailContainer.css"
-import { Link } from 'react-router-dom';
-import { useCart } from '../CartContext/CartContext'; 
+import {  useCart } from '../CartContext/CartContext';  
 import { useNavigate } from 'react-router-dom'; 
-
-
-
-
 
 const ItemDetailContainer = () => {
   const location = useLocation();
   const { id } = useParams();
   const [product, setProduct] = useState(location.state);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(0); 
   const [loading, setLoading] = useState(!location.state);
   const [error, setError] = useState(null);
-  const [stock, setStock] = useState(0); 
   const navigate = useNavigate(); 
-
-
+  const { addToCart, updateStock } = useCart();  
 
   useEffect(() => {
     if (!location.state) {
@@ -37,8 +30,6 @@ const ItemDetailContainer = () => {
               ...productSnapshot.data(),
             };
             setProduct(selectedProduct);
-            setStock(selectedProduct.stock); 
-
           } 
           else {
             console.error('Error fetching product:', error);
@@ -55,29 +46,38 @@ const ItemDetailContainer = () => {
     }
   }, [id, location.state]);
 
-
-
   const handleIncrement = () => {
     if (product && quantity < product.stock) {
-      setQuantity(quantity + 1);
+      setQuantity((prevQuantity) => prevQuantity + 1);
     }
   };
 
   const handleDecrement = () => {
-    if (product && quantity < product.stock) {
-      setQuantity(quantity - 1);
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
-
-  const { addToCart, updateStock } = useCart();
 
   const handleAddToCart = () => {
-    if (quantity > 0) {
+    if (quantity > 0 && product && product.stock !== undefined) {
+      console.log('Producto:', product);
+
+      console.log('Stock del producto:', product.stock);
+  
+      const currentStock = product.stock; // Almacenamos el stock actual para evitar cambios mientras depuramos
+    
       addToCart({ product, quantity });
       updateStock(product.id, quantity);
-      navigate('/carrito', { state: { product, quantity,stock } });
+  
+      // Verificamos nuevamente el stock después de llamar a addToCart
+      console.log('Stock después de addToCart:', currentStock);
+  
+      navigate('/carrito', { state: { product, quantity } });
+    } else {
+      console.error('No hay suficiente stock disponible o el producto no está completamente cargado.');
     }
   };
+  
 
   if (loading) {
     return <p>Cargando...</p>;
@@ -96,18 +96,15 @@ const ItemDetailContainer = () => {
           <p>Precio: ${product.price}</p>
           <p>Stock: {product.stock}</p>
           <div>
-          <button onClick={handleDecrement}>-</button>
-          <span className='QuantityTwo'>{quantity}</span>
-          <button onClick={handleIncrement}>+</button>
-        </div>
-        <p className='prevTotalPrice'>Precio total: ${product.price * quantity}</p>
-        <Link to="/carrito">
-        <button onClick={handleAddToCart}>
-           Agregar al carrito
-        </button>
-        </Link>
-
-    </>
+            <button onClick={handleDecrement}>-</button>
+            <span className='QuantityTwo'>{quantity}</span>
+            <button onClick={handleIncrement}>+</button>
+          </div>
+          <p className='prevTotalPrice'>Precio total: ${product.price * quantity}</p>
+            <button onClick={handleAddToCart}>
+              Agregar al carrito
+            </button>
+        </>
       ) : (
         <p>Producto no encontrado</p>
       )}

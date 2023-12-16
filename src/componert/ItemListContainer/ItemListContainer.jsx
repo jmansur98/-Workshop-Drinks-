@@ -21,7 +21,6 @@ const ItemListContainer = ({ greeting }) => {
         const productsData = snapshot.docs.map((doc) => ({
           id: doc.id, ...doc.data(),
         }));
-        console.log('Productos desde Firebase:', productsData);
         setProductos(productsData);
       })
       .catch((error) => {

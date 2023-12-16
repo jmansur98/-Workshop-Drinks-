@@ -12,6 +12,8 @@ export const CartProvider = ({ children }) => {
 
   const addToCart = ({ product, quantity }) => {
     const productId = product.id;
+    
+    console.log('Cantidad a agregar al carrito:', quantity)
 
     if (stock[productId] >= quantity) {
       setCartCount((prevCount) => prevCount + quantity);
@@ -19,9 +21,7 @@ export const CartProvider = ({ children }) => {
         ...prevStock,
         [productId]: prevStock[productId] - quantity,
       }));
-    } else {
-      console.error('No hay suficiente stock disponible.');
-    }
+    } 
   };
 
   const updateStock = (productId, quantity) => {

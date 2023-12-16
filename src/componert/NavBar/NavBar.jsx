@@ -2,7 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
+
 const NavBar = ({ cartCount }) => {
+  console.log('cartCount in NavBar:', cartCount); 
+
   return (
     <header>
       <nav className="navbar">
@@ -29,5 +32,3 @@ const NavBar = ({ cartCount }) => {
 };
 
 export default NavBar;
-
-
