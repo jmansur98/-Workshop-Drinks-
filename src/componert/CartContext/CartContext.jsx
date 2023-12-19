@@ -2,60 +2,35 @@ import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
 
-export const useCart = () => {
-  const context = useContext(CartContext);
-  if (!context) {
-    throw new Error('useCart debe usarse dentro de un proveedor CartProvider');
-  }
-  return context;
-};
+export const useCart = () => useContext(CartContext);
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState({
-    cartCount: 0,
-    stock: {},
-    selectedProduct: null,
-  });
-
-  const addToCart = ({ product, quantity }) => {
-    const productId = product.id;
-
-    if (cart.stock[productId] >= quantity) {
-      setCart((prevCart) => ({
-        ...prevCart,
-        cartCount: prevCart.cartCount + quantity,
-        stock: {
-          ...prevCart.stock,
-          [productId]: prevCart.stock[productId] - quantity,
-        },
-        selectedProduct: {
-          ...product,
-          quantity,
-        },
-      }));
-    }
+  const [cart, setCart] = useState([]);
+  
+   const removerFromCart = (productId) => {
+    setCart ((prevCart) => prevCart.filter ((item) => item.product.id !== productId));
   };
 
-  const updateStock = (productId, quantity) => {
-    setCart((prevCart) => ({
-      ...prevCart,
-      stock: {
-        ...prevCart.stock,
-        [productId]: (prevCart.stock[productId] || 0) + quantity,
-      },
-    }));
-  };
+  const addToCart = (product, quantity) => {
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((item) => item.product.id === product.id);
 
-  const clearCart = () => {
-    setCart({
-      cartCount: 0,
-      stock: {},
-      selectedProduct: null,
+      if (existingProduct) {
+        return prevCart.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        );
+      } else {
+        return [...prevCart, { product, quantity }];
+      }
     });
   };
+  
 
+  
   return (
-    <CartContext.Provider value={{ ...cart, addToCart, updateStock, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removerFromCart}}>
       {children}
     </CartContext.Provider>
   );

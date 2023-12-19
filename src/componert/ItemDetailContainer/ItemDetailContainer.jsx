@@ -14,7 +14,7 @@ const ItemDetailContainer = () => {
   const [loading, setLoading] = useState(!location.state);
   const [error, setError] = useState(null);
   const navigate = useNavigate(); 
-  const { addToCart, updateStock } = useCart();  
+  const { addToCart } = useCart();  
 
   useEffect(() => {
     if (!location.state) {
@@ -60,21 +60,9 @@ const ItemDetailContainer = () => {
 
   const handleAddToCart = () => {
     if (quantity > 0 && product && product.stock !== undefined) {
-      console.log('Producto:', product);
-
-      console.log('Stock del producto:', product.stock);
-  
-      const currentStock = product.stock; // Almacenamos el stock actual para evitar cambios mientras depuramos
     
-      addToCart({ product, quantity });
-      updateStock(product.id, quantity);
-  
-      // Verificamos nuevamente el stock después de llamar a addToCart
-      console.log('Stock después de addToCart:', currentStock);
-  
-      navigate('/carrito', { state: { product, quantity } });
-    } else {
-      console.error('No hay suficiente stock disponible o el producto no está completamente cargado.');
+      addToCart(product, quantity);
+      navigate('/carrito');
     }
   };
   
@@ -112,4 +100,4 @@ const ItemDetailContainer = () => {
   );
 };
 
-export default ItemDetailContainer;
+export default ItemDetailContainer

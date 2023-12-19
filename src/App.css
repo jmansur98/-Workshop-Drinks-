@@ -49,3 +49,112 @@ color: #000000;
   justify-content: center;
   height: 50vh; 
 }
+/* TuEstilo.css */
+
+.carrito-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+}
+
+.producto-seleccionado {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; /* Agregamos transición para transform y box-shadow */
+}
+
+.producto-seleccionado:hover {
+  transform: translateY(-8px); /* Movimiento hacia arriba al pasar el mouse */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sutil sombra para destacar */
+}
+
+.producto-seleccionado h3 {
+  color: #333;
+  font-size: 1.4em;
+  margin-bottom: 10px;
+}
+
+.info-producto {
+  display: flex;
+  gap: 8px;
+}
+
+.info-producto p {
+  margin: 0;
+}
+.info-producto {
+  display: flex;
+  justify-content: space-between;
+}
+.boton-eliminar {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.boton-eliminar:hover {
+  background-color: #c0392b;
+}
+
+.carrito-vacio {
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 1s ease-out;
+
+  .mensaje {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+    animation: bounceInDown 1s ease-out;
+  }
+
+  .boton-volver {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceInDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
