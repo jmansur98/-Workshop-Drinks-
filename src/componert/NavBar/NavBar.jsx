@@ -4,7 +4,6 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 
 const NavBar = ({ cartCount }) => {
-  console.log('cartCount in NavBar:', cartCount); 
 
   return (
     <header>
