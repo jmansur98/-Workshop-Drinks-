@@ -5,6 +5,7 @@ import './App.css';
 import ItemListContainer from './componert/ItemListContainer/ItemListContainer';
 import ItemDetailContainer from './componert/ItemDetailContainer/ItemDetailContainer';
 import Carrito from './pages/carrito';  
+import  Checkout  from './componert/check/checkout'
 import { CartProvider } from '../src/componert/CartContext/CartContext';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
               <Route path="/item/:id" element={<ItemDetailContainer />} />
               <Route path="/carrito" element={<Carrito />} /> 
               <Route path='*' element={<h1>404 NOT FOUND</h1>} />
+              <Route path='/checkout' element={<Checkout/>}/>
             </Routes>
           </div>
         </div>

@@ -49,7 +49,6 @@ color: #000000;
   justify-content: center;
   height: 50vh; 
 }
-/* TuEstilo.css */
 
 .carrito-container {
   background-color: #fff;
@@ -64,12 +63,12 @@ color: #000000;
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 8px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; /* Agregamos transición para transform y box-shadow */
+  transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out; 
 }
 
 .producto-seleccionado:hover {
-  transform: translateY(-8px); /* Movimiento hacia arriba al pasar el mouse */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Sutil sombra para destacar */
+  transform: translateY(-8px); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
 }
 
 .producto-seleccionado h3 {
@@ -91,7 +90,7 @@ color: #000000;
   justify-content: space-between;
 }
 .boton-eliminar {
-  background-color: #e74c3c;
+  background-color: #3380aa;
   color: #fff;
   border: none;
   padding: 8px 12px;
@@ -101,7 +100,7 @@ color: #000000;
 }
 
 .boton-eliminar:hover {
-  background-color: #c0392b;
+  background-color: #3380aa;
 }
 
 .carrito-vacio {
@@ -121,7 +120,7 @@ color: #000000;
   }
 
   .boton-volver {
-    background-color: #4caf50;
+    background-color: #3380aa;
     color: white;
     border: none;
     padding: 15px 30px;
@@ -131,7 +130,7 @@ color: #000000;
     transition: background-color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-      background-color: #45a049;
+      background-color: #3380aa;
       transform: scale(1.05);
     }
   }

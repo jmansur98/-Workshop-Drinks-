@@ -1,6 +1,6 @@
 import { useCart } from "../componert/CartContext/CartContext";
 import { Link } from 'react-router-dom';
-import "../App.css"
+import "../App.css";
 
 const Carrito = () => {
   const { cart, removerFromCart } = useCart();
@@ -13,17 +13,17 @@ const Carrito = () => {
           <div key={index} className="producto-seleccionado">
             <h3>Producto Seleccionado</h3>
             <div className="info-producto">
-            <p>Nombre: {item.product.name}</p>
-            <p>Precio: ${item.product.price}</p>
-            <p>Cantidad: {item.quantity}</p>
-          </div>
+              <p>Nombre: {item.product.name}</p>
+              <p>Precio: ${item.product.price}</p>
+              <p>Cantidad: {item.quantity}</p>
+            </div>
             <button
               className="boton-eliminar"
-              onClick={() => removerFromCart (item.product.id)} >
+              onClick={() => removerFromCart(item.product.id)}
+            >
               X
             </button>
           </div>
-
         ))
       ) : (
         <div className="carrito-vacio">
@@ -32,7 +32,15 @@ const Carrito = () => {
           <Link to="/">
             <button className="boton-volver">Volver a productos</button>
           </Link>
-        </div>        
+        </div>
+      )}
+
+      {cart.length > 0 && (
+        <Link to="/checkout">
+          <button>
+            Ir al Checkout
+          </button>
+        </Link>
       )}
     </div>
   );

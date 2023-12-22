@@ -63,6 +63,7 @@ const ItemDetailContainer = () => {
     
       addToCart(product, quantity);
       navigate('/carrito');
+
     }
   };
   
