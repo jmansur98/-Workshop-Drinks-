@@ -14,7 +14,7 @@ const Carrito = () => {
             <h3>Producto Seleccionado</h3>
             <div className="info-producto">
               <p>Nombre: {item.product.name}</p>
-              <p>Precio: ${item.product.price}</p>
+              <p>Precio: ${item.product.totalPrice}</p>
               <p>Cantidad: {item.quantity}</p>
             </div>
             <button

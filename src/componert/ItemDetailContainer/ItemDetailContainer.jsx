@@ -61,10 +61,11 @@ const ItemDetailContainer = () => {
   const handleAddToCart = () => {
     if (quantity > 0 && product && product.stock !== undefined) {
     
-      addToCart(product, quantity);
+      const totalPrice = product.price * quantity;
+      addToCart({ ...product, totalPrice }, quantity);
       navigate('/carrito');
 
-    }
+    } 
   };
   
 

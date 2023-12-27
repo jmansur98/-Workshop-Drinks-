@@ -19,7 +19,7 @@ export const CartProvider = ({ children }) => {
         return prevCart.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
-            : item
+            : item 
         );
       } else {
         return [...prevCart, { product, quantity }];

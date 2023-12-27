@@ -30,8 +30,6 @@
     opacity: 1;
   }
 }
-
-/* Hover effect on image */
 .ItemDetailContainer:hover img {
   transform: scale(1.05);
 }
