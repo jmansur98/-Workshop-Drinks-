@@ -1,5 +1,5 @@
 import React from 'react';
-import '../OrderCompleted/OrderCompleted.css';
+import './orderCompleted.css';
 import { useLocation } from 'react-router-dom';
 
 const OrderCompleted = () => {
