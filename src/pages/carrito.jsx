@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "../App.css";
 
 const Carrito = () => {
-  const { cart, removerFromCart } = useCart();
+  const { cart, removeFromCart  } = useCart();
 
   return (
     <div className="carrito-container">
@@ -19,7 +19,7 @@ const Carrito = () => {
             </div>
             <button
               className="boton-eliminar"
-              onClick={() => removerFromCart(item.product.id)}
+              onClick={() => removeFromCart  (item.product.id)}
             >
               X
             </button>

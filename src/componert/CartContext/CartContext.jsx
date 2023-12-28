@@ -7,8 +7,8 @@ export const useCart = () => useContext(CartContext);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   
-   const removerFromCart = (productId) => {
-    setCart ((prevCart) => prevCart.filter ((item) => item.product.id !== productId));
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.product.id !== productId));
   };
 
   const addToCart = (product, quantity) => {
@@ -26,11 +26,13 @@ export const CartProvider = ({ children }) => {
       }
     });
   };
-  
 
+  const clearCart = () => {
+    setCart([]); // Limpiar el carrito estableciéndolo como un array vacío
+  };
   
   return (
-    <CartContext.Provider value={{ cart, addToCart, removerFromCart}}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
