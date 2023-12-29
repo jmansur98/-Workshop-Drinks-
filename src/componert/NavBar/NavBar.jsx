@@ -15,9 +15,6 @@ const NavBar = ({ cartCount }) => {
           <li className="nav-item">
             <Link to="/productos">Productos</Link>
           </li>
-          <li className="nav-item">
-            <Link to="/usuario">Usuario</Link>
-          </li>
           <li className="nav-item cart">
             <Link to="/carrito">
               <AddShoppingCartIcon />

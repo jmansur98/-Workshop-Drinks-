@@ -7,7 +7,6 @@ const Carrito = () => {
 
   return (
     <div className="carrito-container">
-      <h2>Carrito</h2>
       {cart.length > 0 ? (
         cart.map((item, index) => (
           <div key={index} className="producto-seleccionado">
